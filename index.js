@@ -4,7 +4,7 @@ var userClickPattern = [];
 var level = 0;
 var started = false;
 
-$(document).click(function(){
+$(".button").click(function(){
     if (!started){
     nextSequence();
     $("#level-title").text("Level " + level);
@@ -64,21 +64,22 @@ function gameCheck(currenIndex){
 }
 
 $(".btn").click(function(){
-   
+    if (started===true){
     var userChosenColour = $(this).attr("id");
     userClickPattern.push(userChosenColour);
     animatePress(userChosenColour);
     playSound(userChosenColour);    
-    checkGame(userClickPattern.length-1);
+    checkGame(userClickPattern.length-1);}
 })
 
 
 function restart(){
-    $("h1").text("Game Over! Score : "+ level+" Press Any key to restart");
+    $("h1").text("Game Over! Score : "+ level);
     level = 0;
     gamePattern = [];
     userClickPattern = [];
     started = false;
+    $(".button").text("Start Game");
 }
 
 
